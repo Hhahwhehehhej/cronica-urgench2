@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crônica de Urgench — Volume II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=MedievalSharp&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --perg:#E8D9B5; --perg-deep:#DCC89A; --tinta:#2B2013;
+    --brasao:#7A1F2B; --dourado:#A6842E; --azul:#1B2A4A; --musgo:#4A5D3A;
+    --linha:rgba(43,32,19,.32);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *{box-sizing:inherit;}
+  body{
+    margin:0; background:var(--perg);
+    background-image:
+      radial-gradient(circle at 12% 15%, rgba(166,132,46,.12), transparent 42%),
+      radial-gradient(circle at 88% 80%, rgba(27,42,74,.10), transparent 46%);
+    color:var(--tinta); font-family:'EB Garamond', serif; font-size:19px; line-height:1.75;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:56px 26px 120px;}
+
+  .crest{
+    position:absolute; top:44px; right:30px; width:74px; height:82px;
+    background:var(--brasao); color:var(--perg);
+    clip-path:polygon(0% 0%,100% 0%,100% 55%,50% 100%,0% 55%);
+    display:flex; align-items:flex-start; justify-content:center; padding-top:14px;
+    font-family:'Cinzel', serif; font-weight:900; font-size:26px;
+    box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--brasao);
+  }
+  .crest.azul{background:var(--azul); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--azul);}
+  .crest.musgo{background:var(--musgo); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--musgo);}
+  .crest.dourado{background:var(--dourado); color:var(--tinta); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--dourado);}
+  .crest.musgo{background:var(--musgo); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--musgo);}
+  .crest.dourado{background:var(--dourado); color:var(--tinta); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--dourado);}
+  .crest.tinta{background:var(--tinta); box-shadow:0 0 0 3px var(--perg), 0 0 0 5px var(--tinta);}
+
+  header{position:relative; text-align:center; padding-bottom:34px; border-bottom:4px double var(--linha);}
+  .kicker{font-family:'IM Fell English', serif; font-style:italic; letter-spacing:.08em; font-size:15px; color:var(--azul); margin-bottom:10px;}
+  h1{font-family:'Cinzel', serif; font-weight:900; font-size:clamp(32px,6vw,50px); margin:0 0 8px; color:var(--tinta); letter-spacing:.03em; text-transform:uppercase;}
+  .subtitle{font-family:'IM Fell English', serif; font-style:italic; color:#4a3f2c; font-size:21px; margin:0;}
+  .meta{margin-top:22px; font-size:16px; color:#4a3f2c; display:grid; gap:6px;}
+  .meta b{color:var(--azul); font-weight:600; font-family:'Cinzel',serif; font-size:14px; letter-spacing:.03em;}
+
+  .divider{display:flex; align-items:center; justify-content:center; gap:14px; margin:40px 0 30px;}
+  .divider svg{height:22px;}
+  .divider span{font-family:'MedievalSharp', serif; color:var(--dourado); font-size:22px;}
+
+  h2{font-family:'Cinzel', serif; font-weight:700; font-size:24px; color:var(--azul); margin:0 0 4px; padding-left:16px; border-left:5px solid var(--brasao); text-transform:uppercase; letter-spacing:.02em;}
+  h2 .num{font-family:'MedievalSharp',serif; color:var(--dourado); margin-right:10px; font-size:20px;}
+  section{margin-top:50px;}
+  section > p:first-of-type{margin-top:20px;}
+  p{margin:0 0 20px;}
+  strong{color:var(--brasao); font-weight:600;}
+  em{color:var(--azul);}
+
+  table{width:100%; border-collapse:collapse; margin:18px 0 8px; font-size:15.5px; background:rgba(255,255,255,.28);}
+  caption{caption-side:top; font-family:'Cinzel',serif; font-size:14px; text-align:left; padding-bottom:8px; color:var(--azul); letter-spacing:.02em;}
+  th,td{border:1px solid var(--linha); padding:8px 11px; text-align:left;}
+  th{background:rgba(27,42,74,.10); font-weight:700; color:var(--azul); font-family:'Cinzel',serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.02em;}
+  tr:nth-child(even) td{background:rgba(166,132,46,.07);}
+
+  ul{padding-left:22px; margin:14px 0;}
+  li{margin-bottom:8px;}
+  .hooks li::marker{color:var(--brasao); font-family:'MedievalSharp',serif;}
+
+  .note{font-family:'IM Fell English',serif; font-style:italic; font-size:15px; color:#5b4e38; border-left:2px solid var(--dourado); padding-left:14px; margin:12px 0 22px;}
+
+  footer{
+    margin-top:70px; padding-top:26px; border-top:4px double var(--linha);
+    text-align:center; font-family:'Cinzel', serif; font-size:14px; color:#6b5b3e; letter-spacing:.03em;
+  }
+
+  @media (max-width:560px){
+    .crest{width:56px; height:62px; font-size:19px; top:24px; right:18px; padding-top:10px;}
+    .wrap{padding:44px 18px 90px;}
+    table{font-size:13.5px;}
+    th,td{padding:6px 7px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="crest">X</div>
+    <div class="kicker">✠ Crônica de Urgench — Volume II ✠</div>
+    <h1>Mandato X</h1>
+    <p class="subtitle">"O Preço do Aço e do Silêncio" — 1500–1517</p>
+    <div class="meta">
+      <div><b>Monarca</b> Arthur III, 54→71 anos, falecido em 1517</div>
+      <div><b>Alto Conselho</b> Arthur III · Mestre Rafael · General Temir → Marechal Yerlan (~1509) · Bispo Tomás</div>
+    </div>
+  </header>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg><span>⚔</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg></div>
+
+  <section>
+    <h2><span class="num">I.</span>Situação Geral</h2>
+    <p>O mandato em que Urgench enfrenta, pela primeira vez desde a fundação, uma invasão real às suas fronteiras — e em que a Coroa comete o ato mais moralmente pesado de toda a sua história.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">II.</span>Crônica do Mandato</h2>
+    <p><strong>Disciplina fiscal.</strong> Em 1500, diante de uma dívida interna que já superava metade do PIB, Arthur III criou a Secretaria de Finanças e decretou a proibição de qualquer rolagem de dívida pelos trinta anos seguintes. A auditoria revelou décadas de contratos superfaturados e nepotismo nas estatais; dezenas de funcionários foram processados. Bancos protestaram contra a impossibilidade de renegociar prazos; houve fuga pontual de capital e um breve susto recessivo em 1502, mas corte de gastos, impostos seletivos sobre grandes fortunas e venda de participações em estatais menores evitaram o default.</p>
+    <p><strong>Ciência da vida.</strong> Em 1501, Arthur III trouxe, por viagem no tempo — a um custo que o Conselho classificou como "o mais caro já pago por conhecimento" —, papéis completos sobre dezenas de doenças e seus tratamentos. Varíola e catapora ganharam produção industrial; a gripe passou a ter vacinas anuais reformuladas; sífilis e gonorreia obtiveram tratamentos próximos de antibióticos reais. O câncer e a AIDS resistiram à promessa de cura total: os papéis explicaram, pela primeira vez, que "câncer" não é doença única e que a AIDS ataca o próprio sistema de defesa do corpo — revelações que permitiram tratamentos reais e vida prolongada, mas não cura universal, tarefa que a Real Academia reconheceu ser de gerações futuras. O HPV recebeu vacina experimental em testes. Histeria messiânica e mercado negro de remédios falsificados surgiram nas periferias; o debate sobre quem seria tratado primeiro dividiu o Conselho, resolvido por triagem clínica com subsídio parcial estatal.</p>
+    <p><strong>A ameaça do Leste.</strong> Entre 1505 e 1507, os uzbeques de Muhammad Shaybani Khan tomaram Samarcanda e Bukhara, encerrando o domínio timúrida sobre Transoxiana — e Khwarezm tornou-se alvo direto. Arthur III acelerou quartéis, fortificações, um novo Quartel-General, paióis, vilas militares e postos de saúde junto às guarnições. Quando as vanguardas uzbeques testaram as fronteiras em 1508, encontraram muralhas modernas e mais de cem mil combatentes com fuzis padronizados — os invasores foram repelidos, e Urgench, fiel à não anexação, não avançou além de destruir os postos usados no ataque. Em 1510, a morte de Shaybani Khan para o xá safávida Ismail I na Batalha de Merv aliviou de vez a pressão.</p>
+    <p><strong>Formação cívico-militar e papel-moeda.</strong> Colégios militares, uma universidade militar e centros de reabilitação para veteranos ergueram-se, com educação cívico-patriótica obrigatória nas escolas — famílias liberais protestaram sem sucesso. Em 1503, debateu-se longamente o papel-moeda; a solução criou emissão lastreada e conversível sob regras rígidas, com falsificação punida com pena capital.</p>
+    <p><strong>O Conversor Bessemer e as redes sem fio.</strong> Em 1505, papéis de um conversor Bessemer de 1856 permitiram produção de aço em volumes antes impensáveis, embora o minério regional, rico em fósforo, exigisse dois anos de ajustes. Papéis sobre saltos de frequência e redes sem fio de dados chegaram também neste ano e permaneceram teoria trancada: sem silício nem semicondutores, a rede sem fio virou papel guardado para uma geração ainda por nascer.</p>
+    <p><strong>O ato de 1516.</strong> No auge da crise religiosa que a espionagem europeia indicava se formar, Arthur III tomou, em segredo absoluto, a decisão mais grave de seu reinado: eliminar, com um agente armado de rifle automático, cinco homens que ainda levavam vidas comuns — Martinho Lutero, João Calvino, o rei Henrique VIII, Pierre Robert e John Knox — antes que suas ideias fragmentassem a cristandade. A operação, disfarçada como mortes súbitas naturais, não deixou vestígio urguenchiano. Bispo Tomás, sabendo depois do fato, entrou em crise de consciência pública, chamando o ato de pecado mortal incompatível com o livre-arbítrio da própria fé, e impôs meses de penitência privada a Arthur III. As consequências não foram as esperadas: sem Lutero, um pregador suíço, Ulrico Zwínglio, emergiu em Zurique já em 1518 com ideias notavelmente similares; outros clérigos menores começaram a preencher o vácuo em Wittenberg e Genebra. Na Inglaterra, a morte súbita de Henrique VIII — sem herdeiro homem adulto, apenas uma filha recém-nascida — mergulhou o reino em disputa sucessória. Arthur III, consumido pelo peso do que fizera, morreu em 1517, aos 71 anos — os cronistas registraram apenas "enfermidade do coração e do espírito".</p>
+  </section>
+
+  <section>
+    <h2><span class="num">III.</span>Decisões do Conselho e de Arthur III</h2>
+    <p>Secretaria de Finanças e regra dos trinta anos sem rolagem; transferência e produção parcial de curas e vacinas; militarização de fronteira e vitória defensiva contra os uzbeques (1508); colégios e universidade militar; papel-moeda lastreado; Conversor Bessemer; recepção teórica das redes sem fio; e, em sigilo absoluto, a operação de 1516.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">IV.</span>Parlamento Consultivo</h2>
+    <p>A Assembleia apoiou o financiamento militar diante da ameaça uzbeque, mas resistiu aos cortes fiscais sobre subsídios agrícolas — resolvido com isenções para pequenos produtores.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">V.</span>Reações Externas</h2>
+    <p>Conquista uzbeque de Transoxiana (1505–1507); vitória defensiva urguenchiana (1508); morte de Shaybani Khan em Merv (1510); Selim I inicia a expansão otomana rumo ao Egito (1516–1517); na Europa, mortes súbitas de cinco figuras passam quase despercebidas em meio à instabilidade inglesa.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VI.</span>Indicadores do Mandato X <span style="font-size:14px;font-weight:400;color:#6b5b3e;">(1500–1517)</span></h2>
+    <p class="note">Estimativas comparativas retroativas — categorias de 2026 aplicadas a um Estado pré-moderno em guerra e transição industrial.</p>
+    <table>
+      <caption>Indicadores gerais — 1500 vs. 1517</caption>
+      <thead><tr><th>Indicador</th><th>1500</th><th>1517</th><th>Variação</th></tr></thead>
+      <tbody>
+        <tr><td>Inflação</td><td>2,6%</td><td>4,1%</td><td>Alta por guerra e transição monetária</td></tr>
+        <tr><td>Saneamento/Esgoto</td><td>99,9%/99,3%</td><td>99,95%/99,6%</td><td>Marginal</td></tr>
+        <tr><td>PIB nominal</td><td>~US$ 34 bi</td><td>~US$ 52 bi</td><td>Guerra e ciência elevam gasto e produção</td></tr>
+        <tr><td>Ranking economias</td><td>Potência europeia média-alta</td><td>Grande potência industrial</td><td>Salto pelo aço próprio</td></tr>
+        <tr><td>Ranking exércitos</td><td>~78.000</td><td>~115.000</td><td>Bessemer e mobilização</td></tr>
+        <tr><td>IDH</td><td>0,83</td><td>0,86</td><td>+0,03</td></tr>
+        <tr><td>PIB per capita</td><td>~US$ 53.100</td><td>~US$ 61.200</td><td>Pop. ~850 mil</td></tr>
+        <tr><td>Gini</td><td>0,31</td><td>0,29</td><td>Redução</td></tr>
+        <tr><td>Homicídios /100 mil</td><td>1,6</td><td>2,1</td><td>Alta relacionada à guerra</td></tr>
+        <tr><td>Desemprego</td><td>1,9%</td><td>2,6%</td><td>Austeridade e disrupção bélica</td></tr>
+        <tr><td>Alfabetização</td><td>99,4%</td><td>99,7%</td><td>Expansão</td></tr>
+        <tr><td>Ens. básico/médio/superior</td><td>99,8/91/51%</td><td>99,9/94/58%</td><td>Universidades militares</td></tr>
+        <tr><td>Dívida ext./int. PIB</td><td>24%/51%</td><td>20%/38%</td><td>Disciplina fiscal surtindo efeito</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">VII.</span>Riscos, Tensões e Oportunidades</h2>
+    <p>O segredo de 1516, se revelado, destruiria a reputação internacional de Urgench e a aliança com Roma; a militarização, bem-sucedida contra os uzbeques, arma uma sociedade cada vez mais disposta à força; a dependência de tecnologias inaplicáveis mostra os limites do que papéis, por si só, entregam.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VIII.</span>Ganchos para o Mandato XI</h2>
+    <p>O segredo sobrevive à morte de Arthur III? Como a Reforma fragmentada se desenrola? A Inglaterra sem Henrique VIII segue qual rumo?</p>
+  </section>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#1B2A4A" stroke-width="1.5"/></svg><span>⚙</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#1B2A4A" stroke-width="1.5"/></svg></div>
+
+  <header style="margin-top:10px;">
+    <div class="crest azul">XI</div>
+    <div class="kicker">✠ Crônica de Urgench — Volume II ✠</div>
+    <h1>Mandato XI</h1>
+    <p class="subtitle">"A Cidade que Guardou um Segredo" — 1517–1530</p>
+    <div class="meta">
+      <div><b>Monarca</b> Arthur IV (filho de Arthur III), ~40→53 anos</div>
+      <div><b>Alto Conselho</b> Arthur IV · Mestre Rafael → Mestra Beatriz (1528) · Marechal Yerlan · Bispo Tomás</div>
+    </div>
+  </header>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg><span>⚔</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg></div>
+
+  <section>
+    <h2><span class="num">I.</span>Situação Geral</h2>
+    <p>A cidade herda não apenas um trono, mas um segredo — e um mundo que, apesar de tudo, ainda encontra seu próprio caminho até a Reforma.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">II.</span>Crônica do Mandato</h2>
+    <p>Arthur IV assumiu jurando manter o silêncio de 1516 como segredo de Estado absoluto, revelado apenas ao futuro ocupante do trono no momento da coroação — novo rito acrescentado ao Juramento Dinástico. A Europa seguiu seu curso: Zwínglio consolidou-se em Zurique ao longo da década de 1520, pregando ideias que, embora mais fragmentadas que a Reforma "original", ainda romperam a unidade católica em partes da Suíça e do sul alemão; na Inglaterra, a disputa sucessória pós-1516 resolveu-se, após anos de instabilidade, com a filha de Henrique VIII, ainda criança, sob regência de facções rivais — um reino enfraquecido e sem energia para aventuras ultramarinas nesta década. Em Genebra, sem Calvino, reformadores menores mantiveram a cidade em fermentação religiosa sem doutrina sistemática — vácuo que Bispo Tomás descreveu com alívio e desconforto em partes iguais: "matamos os autores, não apagamos o livro que eles ainda escreveriam entre si, aos pedaços." A produção de vacinas amadureceu, com o programa de HPV saindo da fase experimental em 1524, e tratamentos oncológicos e antirretrovirais tornando-se item orçamentário permanente do Ministério da Saúde, ainda racionado. Mestre Rafael morreu em 1528, sucedido por Mestra Beatriz, primeira mulher a ocupar cadeira do Alto Conselho — nomeação que o próprio Bispo Tomás, mais flexível na velhice, defendeu como "mérito reconhecendo mérito, como sempre devia ter sido". A disciplina fiscal de 1500 completou sua primeira década e meia com resultados visíveis, ainda que à custa de uma classe média urbana que sentia o peso dos impostos repassado em preços mais altos. As redes sem fio permaneceram teoria trancada; o rádio convencional expandiu-se para transmissões diárias regulares, tornando-se o primeiro verdadeiro meio de comunicação de massa da história urguenchiana.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">III.</span>Decisões do Alto Conselho</h2>
+    <p>Rito de sigilo dinástico sobre o segredo de 1516; distribuição controlada da vacina de HPV; orçamento permanente para tratamentos oncológicos e antirretrovirais; cooptação de Mestra Beatriz; expansão da radiodifusão regular.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">IV.</span>Parlamento Consultivo</h2>
+    <p>A Assembleia debateu pela primeira vez reduzir a carga tributária sobre a classe média urbana, redistribuindo-a sobre o capital das estatais — proposta ainda sem resolução ao fim do mandato.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">V.</span>Reações Externas</h2>
+    <p>Ascensão fragmentada de Zwínglio na Suíça; regência instável na Inglaterra pós-Henrique VIII; consolidação safávida sob Ismail I e depois Tahmasp I; início do reinado de Solimão, o Magnífico (1520), com Mohács (1526) e o cerco de Viena (1529) redesenhando o equilíbrio europeu, sem impacto direto sobre Urgench.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VI.</span>Indicadores do Mandato XI <span style="font-size:14px;font-weight:400;color:#6b5b3e;">(1517–1530)</span></h2>
+    <table>
+      <caption>Indicadores gerais — 1517 vs. 1530</caption>
+      <thead><tr><th>Indicador</th><th>1517</th><th>1530</th><th>Variação</th></tr></thead>
+      <tbody>
+        <tr><td>Inflação</td><td>4,1%</td><td>2,8%</td><td>Estabilização</td></tr>
+        <tr><td>Saneamento/Esgoto</td><td>99,95%/99,6%</td><td>99,97%/99,8%</td><td>Marginal</td></tr>
+        <tr><td>PIB nominal</td><td>~US$ 52 bi</td><td>~US$ 78 bi</td><td>Consolidação industrial</td></tr>
+        <tr><td>Ranking economias</td><td>Grande potência industrial</td><td>Entre as principais economias conhecidas</td><td>Pico da Segunda Era</td></tr>
+        <tr><td>Ranking exércitos</td><td>~115.000</td><td>~145.000</td><td>Consolidação pós-guerra</td></tr>
+        <tr><td>IDH</td><td>0,86</td><td>0,89</td><td>+0,03</td></tr>
+        <tr><td>PIB per capita</td><td>~US$ 61.200</td><td>~US$ 74.300</td><td>Pop. ~1,05 milhão</td></tr>
+        <tr><td>Gini</td><td>0,29</td><td>0,27</td><td>Redução</td></tr>
+        <tr><td>Homicídios /100 mil</td><td>2,1</td><td>1,4</td><td>Estabilização pós-guerra</td></tr>
+        <tr><td>Desemprego</td><td>2,6%</td><td>2,0%</td><td>Recuperação</td></tr>
+        <tr><td>Alfabetização</td><td>99,7%</td><td>99,9%</td><td>Quase total</td></tr>
+        <tr><td>Ens. básico/médio/superior</td><td>99,9/94/58%</td><td>99,9/96/64%</td><td>Maturidade educacional</td></tr>
+        <tr><td>Dívida ext./int. PIB</td><td>20%/38%</td><td>15%/28%</td><td>Disciplina fiscal consolidada</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">VII.</span>Riscos, Tensões e Oportunidades</h2>
+    <p>O segredo de 1516 permanece contido, mas cada novo monarca que o herda é um novo ponto de vazamento possível; a carga tributária sobre a classe média é tensão social crescente e não resolvida; a Reforma, fragmentada mas não extinta, ainda pode convergir de formas imprevisíveis.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VIII.</span>Ganchos para o Mandato XII</h2>
+    <ul class="hooks">
+      <li>O segredo de 1516 vaza — por espionagem, confissão ou acidente?</li>
+      <li>A Reforma fragmentada eventualmente encontra um novo líder unificador?</li>
+      <li>A tensão tributária sobre a classe média urbana explode em algo maior?</li>
+    </ul>
+  </section>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#4A5D3A" stroke-width="1.5"/></svg><span>🛡</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#4A5D3A" stroke-width="1.5"/></svg></div>
+
+  <header style="margin-top:10px;">
+    <div class="crest musgo">XII</div>
+    <div class="kicker">✠ Crônica de Urgench — Volume II ✠</div>
+    <h1>Mandato XII</h1>
+    <p class="subtitle">"A Marcha Para o Noroeste" — 1530–1548</p>
+    <div class="meta">
+      <div><b>Monarca</b> Arthur IV, ~63→81 anos, falecido em 1548</div>
+      <div><b>Alto Conselho</b> Arthur IV · Mestra Beatriz · Marechal Yerlan → General Bahadir (comando operacional) · Bispo Tomás → Bispo Cirilo (1536)</div>
+    </div>
+  </header>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg><span>⚔</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg></div>
+
+  <section>
+    <h2><span class="num">I.</span>Situação Geral</h2>
+    <p>O mandato em que Urgench rompe, pela primeira vez em cento e quarenta anos, com o princípio fundador da não anexação — e paga por isso um preço que nenhuma tabela de indicadores capta inteiramente.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">II.</span>Crônica do Mandato</h2>
+    <p><strong>A reunião de 1530.</strong> Diante do Conselho, do Ministro da Defesa e do Ministro das Relações Exteriores, Arthur IV apresentou a <strong>Marcha Para o Noroeste</strong>: conquista territorial até Saraichik, no baixo Volga, garantindo acesso próprio ao mar Cáspio. Sua justificativa: a não anexação nascera do medo real dos fundadores de perder tudo numa guerra que a jovem cidade não podia vencer — cálculo de sobrevivência de 1388, não mandamento eterno. Manter Urgench cidade-Estado para sempre, argumentou, condenava seu povo a um teto que o mundo marítimo já não respeitava. Mestra Beatriz opôs-se com veemência; Bispo Tomás, em seus últimos anos, chamou o plano de traição ao pacto fundacional — sua última grande batalha política antes de morrer em 1536. Arthur IV ofereceu concessões: um <strong>municipalismo administrativo</strong> preservaria autonomia local; a Marcha pararia em Saraichik, sem exceção; nenhuma tecnologia seria transferida a aliados; os herdeiros seriam instruídos a concluir a campanha em caso de sua morte. A votação terminou em três a um, com Mestra Beatriz registrando dissidência formal sem precedentes desde a fundação.</p>
+    <p><strong>Propaganda e mobilização.</strong> Rádio e imprensa estatal venderam a Marcha como destino manifesto católico-urguenchiano — linguagem que cronistas da própria corte, em relatórios nunca publicados, reconheceram como eufemismo para conquista pura e simples.</p>
+    <p><strong>Exércitos clonados e ciborgues.</strong> A decisão mais radical foi o transporte, via viagem no tempo, de material genético e componentes bio-mecânicos para um corpo de elite de soldados clonados e combatentes ciborgues — projeto tão caro em energia e sigilo que consumiu mais recursos de transporte temporal que qualquer outra iniciativa desde 1388. Os clones nunca ultrapassaram quinze mil indivíduos — elite pequena, não exército substituto, pela limitação de energia disponível. Os ciborgues, poucas centenas, eram voluntários e condenados por crimes graves; componentes esgotados não podiam ser repostos localmente — cada unidade perdida era irrecuperável. A questão teológica foi imediata: Bispo Tomás declarou os clones plenamente humanos e batizáveis; setores conservadores do clero rejeitaram, chamando-os "homúnculos sem herança original" — eco direto do debate de Valladolid sobre a humanidade dos povos americanos, ocorrendo quase ao mesmo tempo do outro lado do mundo. Rebeliões pontuais entre clones com consciência própria além do condicionamento levaram, em 1540, à concessão de cidadania plena a um primeiro grupo — precedente que transformou o programa de "arma descartável" em guarda de elite hereditária.</p>
+    <p><strong>A campanha.</strong> A Marcha avançou por etapas entre 1531 e 1540, construindo estradas, trilhos e fortificações — absorção territorial lenta, apoiada em logística mais que velocidade. Tribos nogaias e cazaques resistiram com mobilidade de estepe; Urgench respondeu com força em pontos fixos e negociação com líderes locais dispostos ao municipalismo — política que evitou extermínio total, mas não impediu deportações forçadas e ao menos duas ocasiões, reconhecidas como manchas morais permanentes, em que comandantes excederam ordens contra aldeias resistentes, sem punição à altura do que Bispo Cirilo exigiu publicamente. Saraichik, sob a Horda Nogai, caiu em 1540 após cerco de meses — rendição negociada, não massacre, com conversão incentivada, não imposta pela espada, ainda que a distinção tenha significado pouco na prática para muitos súditos. Nenhuma força avançou além de Saraichik; Arthur IV viajou pessoalmente até lá em 1541 para proclamar, com lágrimas genuínas segundo os cronistas, que Urgench finalmente tocava o mar.</p>
+    <p><strong>Municipalismo e assimilação.</strong> Os territórios conquistados ganharam conselhos municipais mistos sob supervisão da Coroa, com autonomia real sobre costumes e disputas menores. A conversão avançou por gerações; a assimilação produziu sincretismo genuíno e ressentimento silencioso, com três levantes entre 1542 e 1547, reprimidos com força, mas sem repetir os excessos da conquista.</p>
+    <p><strong>A morte de Arthur IV.</strong> Morreu em 1548, aos 81 anos, tendo visto seu projeto mais controverso concluído, mas não vindicado — a historiografia urguenchiana jamais chegaria a veredito unânime sobre se a Marcha fora necessidade estratégica ou traição ao espírito fundador.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">III.</span>Decisões do Conselho e de Arthur IV</h2>
+    <p>Aprovação da Marcha por três votos a um; criação do corpo de clones e ciborgues com limite rígido de escala; cidadania a clones rebeldes conscientes (1540); municipalismo administrativo; conquista negociada de Saraichik (1540); proibição de avanço além de Saraichik e de transferência tecnológica a aliados.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">IV.</span>Parlamento Consultivo</h2>
+    <p>Corporações militares e industriais apoiaram entusiasticamente a Marcha; sindicatos agrários e parte do clero protestaram contra o custo humano e fiscal, sem deter a votação do Alto Conselho.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">V.</span>Reações Externas</h2>
+    <p>A Horda Nogai, a Crimeia e Astracã observaram a Marcha com alarme crescente; Moscóvia, sob o jovem Ivan IV (Tsar desde 1547), via na expansão urguenchiana ameaça e conveniência simultâneas. Nenhuma guerra direta eclodiu; acordo tácito de fronteiras deixou Saraichik com Urgench e a rota para Astracã livre à futura expansão russa.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VI.</span>Indicadores do Mandato XII <span style="font-size:14px;font-weight:400;color:#6b5b3e;">(1530–1548)</span></h2>
+    <table>
+      <caption>Indicadores gerais — 1530 vs. 1548</caption>
+      <thead><tr><th>Indicador</th><th>1530</th><th>1548</th><th>Variação</th></tr></thead>
+      <tbody>
+        <tr><td>Inflação</td><td>2,8%</td><td>5,5%</td><td>Alta pelo custo da guerra</td></tr>
+        <tr><td>PIB nominal</td><td>~US$ 78 bi</td><td>~US$ 145 bi</td><td>Novo acesso ao Cáspio</td></tr>
+        <tr><td>Ranking economias</td><td>Entre as principais conhecidas</td><td>Potência com acesso marítimo próprio</td><td>Salto estratégico</td></tr>
+        <tr><td>Ranking exércitos</td><td>~145.000</td><td>~210.000 (com elite clonada)</td><td>Mobilização de guerra</td></tr>
+        <tr><td>IDH</td><td>0,89</td><td>0,91 (disparidade centro-periferia)</td><td>Nova desigualdade interna</td></tr>
+        <tr><td>PIB per capita</td><td>~US$ 74.300</td><td>~US$ 90.600</td><td>Pop. ~1,6 milhão</td></tr>
+        <tr><td>Gini</td><td>0,27</td><td>0,30</td><td>Alta pela conquista</td></tr>
+        <tr><td>Homicídios /100 mil</td><td>1,4</td><td>4,2</td><td>Guerra e repressão de levantes</td></tr>
+        <tr><td>Desemprego</td><td>2,0%</td><td>2,8%</td><td>Disrupção bélica</td></tr>
+        <tr><td>Dívida ext./int. PIB</td><td>15%/28%</td><td>22%/42%</td><td>Disciplina fiscal rompida pela guerra</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">VII.</span>Riscos, Tensões e Oportunidades</h2>
+    <p>O legado moral da conquista — deportações, excessos de comandantes, o estatuto ambíguo dos clones — é ferida que o Estado não resolveu, apenas administrou; a disciplina fiscal de 1500 foi violada pela guerra. Como oportunidade, o acesso ao Cáspio abre rotas comerciais novas justamente quando a Rota da Seda definha.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VIII.</span>Ganchos para o Mandato XIII</h2>
+    <p>Como Arthur V consolida um território conquistado, não apenas administrado? O que acontece com os clones que já são adultos com consciência própria? A fronteira tácita com Moscóvia sobrevive à ambição de Ivan IV?</p>
+  </section>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#A6842E" stroke-width="1.5"/></svg><span>⚓</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#A6842E" stroke-width="1.5"/></svg></div>
+
+  <header style="margin-top:10px;">
+    <div class="crest dourado">XIII</div>
+    <div class="kicker">✠ Crônica de Urgench — Volume II ✠</div>
+    <h1>Mandato XIII</h1>
+    <p class="subtitle">"O Preço de Saraichik" — 1548–1570</p>
+    <div class="meta">
+      <div><b>Monarca</b> Arthur V, ~38→60 anos, falecido em 1570</div>
+      <div><b>Alto Conselho</b> Arthur V · Mestra Beatriz (falecida 1552) → Mestre Ionut · General Bahadir (agora Marechal) · Bispo Cirilo</div>
+    </div>
+  </header>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg><span>⚔</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg></div>
+
+  <section>
+    <h2><span class="num">I.</span>Situação Geral</h2>
+    <p>A geração que herda não uma conquista fresca, mas um território a integrar — e uma dívida, moral e fiscal, a pagar.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">II.</span>Crônica do Mandato</h2>
+    <p>Arthur V, formado especificamente para "concluir" a Marcha ainda adolescente, dedicou o essencial de seu reinado à digestão do que fora conquistado, não à expansão. Os três levantes finais foram pacificados até 1553; o municipalismo, testado sob pressão real, mostrou limites: distritos com clero paciente prosperaram e assimilaram-se genuinamente; distritos sob mão dura viram emigração silenciosa e ressentimento que se tornaria, gerações depois, memória de agravo. Mestra Beatriz morreu em 1552, sua última intervenção pública sendo um apelo, parcialmente atendido, por investimento equalizador em saúde e educação nos territórios anexados. O corpo de clones, já adultos e com plenos direitos civis, formalizou-se como a <strong>Guarda de Saraichik</strong>, casta militar hereditária de prestígio próprio — nem totalmente aceita, nem totalmente estranha, um novo grupo social permanente que ninguém em 1388 poderia ter previsto. A disciplina fiscal, abalada pela guerra, foi retomada a partir de 1550 com imposto extraordinário sobre lucros de guerra das corporações militares — impopular entre quem mais lucrara, mas eficaz. Saraichik tornou-se, ao longo da década de 1560, porto funcional no Cáspio, com estaleiros modestos e as primeiras embarcações urguenchianas rumo à Pérsia safávida — não substituindo a Rota da Seda perdida, mas oferecendo alternativa real pela primeira vez em cinquenta anos de temor. Arthur V morreu em 1570, aos sessenta anos, de causas naturais, deixando um território consolidado, embora não plenamente cicatrizado.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">III.</span>Decisões do Alto Conselho</h2>
+    <p>Pacificação final dos levantes (1553); formalização da Guarda de Saraichik com direitos plenos; investimento equalizador em saúde e educação; imposto extraordinário sobre lucros de guerra; desenvolvimento portuário e naval em Saraichik.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">IV.</span>Parlamento Consultivo</h2>
+    <p>A Assembleia debateu a representação política dos novos territórios — resolvida com assentos proporcionais, porém limitados, para representantes municipais de Saraichik e do corredor anexado.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">V.</span>Reações Externas</h2>
+    <p>Ivan IV conquistou Kazan (1552) e Astracã (1556), consolidando o domínio russo sobre o médio e baixo Volga até as proximidades da fronteira tácita — as duas potências, agora vizinhas de fato, mantiveram relações formalmente corretas e comercialmente proveitosas, sem guerra aberta. Solimão, o Magnífico, morreu em 1566; os safávidas sob Tahmasp I mantiveram relações cautelosas com o novo porto caspiano.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VI.</span>Indicadores do Mandato XIII <span style="font-size:14px;font-weight:400;color:#6b5b3e;">(1548–1570)</span></h2>
+    <table>
+      <caption>Indicadores gerais — 1548 vs. 1570</caption>
+      <thead><tr><th>Indicador</th><th>1548</th><th>1570</th><th>Variação</th></tr></thead>
+      <tbody>
+        <tr><td>Inflação</td><td>5,5%</td><td>3,2%</td><td>Estabilização pós-guerra</td></tr>
+        <tr><td>PIB nominal</td><td>~US$ 145 bi</td><td>~US$ 310 bi</td><td>Comércio caspiano consolidado</td></tr>
+        <tr><td>Ranking exércitos</td><td>~210.000</td><td>~260.000</td><td>Consolidação, não expansão</td></tr>
+        <tr><td>IDH</td><td>0,91</td><td>0,93</td><td>Equalização centro-periferia</td></tr>
+        <tr><td>PIB per capita</td><td>~US$ 90.600</td><td>~US$ 140.900</td><td>Pop. ~2,2 milhões</td></tr>
+        <tr><td>Gini</td><td>0,30</td><td>0,26</td><td>Redução pela integração</td></tr>
+        <tr><td>Homicídios /100 mil</td><td>4,2</td><td>2,0</td><td>Pacificação</td></tr>
+        <tr><td>Dívida ext./int. PIB</td><td>22%/42%</td><td>17%/30%</td><td>Disciplina fiscal retomada</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">VII.</span>Riscos, Tensões e Oportunidades</h2>
+    <p>A Guarda de Saraichik, como casta militar permanente, é ativo de defesa e risco político de longo prazo; a fronteira tácita com uma Moscóvia cada vez mais poderosa depende de boa vontade, não de tratado formal. Como oportunidade, o porto caspiano resolve, em parte, a ameaça estrutural identificada décadas antes.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VIII.</span>Ganchos para o Mandato XIV</h2>
+    <p>A fronteira com a Rússia de Ivan IV resiste às próximas gerações? A Guarda de Saraichik se torna força estabilizadora ou fator de instabilidade política?</p>
+  </section>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#1B2A4A" stroke-width="1.5"/></svg><span>⚙</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#1B2A4A" stroke-width="1.5"/></svg></div>
+
+  <header style="margin-top:10px;">
+    <div class="crest azul">XIV</div>
+    <div class="kicker">✠ Crônica de Urgench — Volume II ✠</div>
+    <h1>Mandato XIV</h1>
+    <p class="subtitle">"O Século que se Fecha" — 1570–1600</p>
+    <div class="meta">
+      <div><b>Monarca</b> Arthur VI, ~32→62 anos</div>
+      <div><b>Alto Conselho</b> Arthur VI · Mestre Ionut · Marechal Bahadir (falecido 1578) → Marechala Zahra · Bispo Cirilo (falecido 1582) → Bispo Anselmo</div>
+    </div>
+  </header>
+
+  <div class="divider"><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg><span>⚔</span><svg viewBox="0 0 100 20"><path d="M0 10 L100 10" stroke="#7A1F2B" stroke-width="1.5"/></svg></div>
+
+  <section>
+    <h2><span class="num">I.</span>Situação Geral</h2>
+    <p>Três décadas de consolidação silenciosa, num mundo que, do outro lado do planeta, também se reorganiza.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">II.</span>Crônica do Mandato</h2>
+    <p>Sem nova guerra de expansão — a doutrina do "parar em Saraichik" provou-se, ao longo de trinta anos, mais duradoura do que muitos temiam em 1530 —, o reinado de Arthur VI foi de maturação: as universidades formavam engenheiros, médicos e administradores tanto do núcleo quanto dos territórios anexados sem distinção formal, e a nomeação de Marechala Zahra, descendente de família de Saraichik integrada duas gerações antes, tornou-se símbolo genuíno de que a assimilação produzira ao menos alguma unidade real. Os clones da Guarda de Saraichik, já na terceira geração nascida naturalmente de uniões entre veteranos originais, deixaram de ser tecnicamente "clones", tornando-se apenas mais uma linhagem urguenchiana — o debate teológico sobre sua alma simplesmente esvaziou-se com o tempo. Do outro lado do mundo, notícias fragmentadas chegavam via comércio: a Inglaterra, sem o filho que Henrique VIII nunca teve nesta história alterada, seguia sob a rainha Maria I havia décadas, reino católico estável, sem a rivalidade naval que uma Inglaterra protestante teria travado contra a Espanha — a Grande Armada de 1588 simplesmente não aconteceu, e os espiões urguenchianos debatiam, sem certeza, se sua intervenção de 1516 gerara um mundo mais pacífico ou apenas adiara conflitos para formas ainda não vistas. Na Rússia, a morte de Ivan IV em 1584 abriu, sob seu filho Fiodor e o regente Boris Godunov, os primeiros sinais de instabilidade sucessória crescente — eco distante, para os cronistas urguenchianos, de sua própria crise de 1428. No Japão, rumores cada vez mais concretos de um general chamado Hideyoshi unificando o arquipélago chegavam por mercadores.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">III.</span>Decisões do Alto Conselho</h2>
+    <p>Integração administrativa plena entre núcleo e territórios anexados, sem distinção formal de cidadania; reconhecimento da terceira geração da Guarda de Saraichik como linhagem civil ordinária; nomeação de Marechala Zahra; manutenção estrita da fronteira tácita com a Rússia, sem nova expansão.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">IV.</span>Parlamento Consultivo</h2>
+    <p>Pela primeira vez, representantes de Saraichik ocuparam a presidência rotativa da Assembleia — marco que Bispo Anselmo celebrou como "a cura, finalmente, da ferida de 1531".</p>
+  </section>
+
+  <section>
+    <h2><span class="num">V.</span>Reações Externas</h2>
+    <p>Batalha de Lepanto (1571); morte de Ivan IV (1584) e instabilidade sucessória russa sob Fiodor I e Godunov; unificação do Japão sob Hideyoshi avançando na década de 1580; estabilidade católica inglesa sob Maria I, divergindo radicalmente da história "original".</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VI.</span>Indicadores do Mandato XIV <span style="font-size:14px;font-weight:400;color:#6b5b3e;">(1570–1600)</span></h2>
+    <table>
+      <caption>Indicadores gerais — 1570 vs. 1600</caption>
+      <thead><tr><th>Indicador</th><th>1570</th><th>1600</th><th>Variação</th></tr></thead>
+      <tbody>
+        <tr><td>Inflação</td><td>3,2%</td><td>2,4%</td><td>Estabilidade de longo prazo</td></tr>
+        <tr><td>PIB nominal</td><td>~US$ 310 bi</td><td>~US$ 620 bi</td><td>Maturidade caspiana e industrial</td></tr>
+        <tr><td>Ranking exércitos</td><td>~260.000</td><td>~340.000</td><td>Crescimento sem nova guerra</td></tr>
+        <tr><td>IDH</td><td>0,93</td><td>0,95</td><td>Integração plena norte-sul</td></tr>
+        <tr><td>PIB per capita</td><td>~US$ 140.900</td><td>~US$ 182.400</td><td>Pop. ~3,4 milhões</td></tr>
+        <tr><td>Gini</td><td>0,26</td><td>0,23</td><td>Redução final do século</td></tr>
+        <tr><td>Homicídios /100 mil</td><td>2,0</td><td>1,2</td><td>Estabilidade duradoura</td></tr>
+        <tr><td>Dívida ext./int. PIB</td><td>17%/30%</td><td>13%/22%</td><td>Disciplina fiscal plenamente restaurada</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">VII.</span>Riscos, Tensões e Oportunidades</h2>
+    <p>A instabilidade sucessória russa pode, em uma geração, redesenhar toda a fronteira norte de Urgench; a memória da conquista de 1531–1540, mesmo suavizada por décadas de integração, permanece ferida histórica não plenamente resolvida em alguns distritos periféricos.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">VIII.</span>Ganchos para o Mandato XV</h2>
+    <ul class="hooks">
+      <li>Como a instabilidade russa (o futuro "Tempo de Perturbações") afeta a fronteira caspiana?</li>
+      <li>A Inglaterra católica e estável de Maria I segue qual rumo no século XVII?</li>
+      <li>Surge alguma nova crise sucessória em Urgench após três reinados sem sobressaltos?</li>
+    </ul>
+  </section>
+
+  <footer>✠ Anno Domini 1600 — a crônica aguarda comando para o Mandato XV ✠</footer>
+</div>
+</body>
+</html>
